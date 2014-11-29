@@ -1,0 +1,31 @@
+Index: file-5.22/configure.ac
+===================================================================
+--- file-5.22.orig/configure.ac
++++ file-5.22/configure.ac
+@@ -61,7 +61,7 @@ esac
+ AC_SUBST(MINGW)
+ AM_CONDITIONAL(MINGW, test "$MINGW" = 1)
+ 
+-AC_SUBST([pkgdatadir], ['$(datadir)/misc'])
++AC_SUBST([pkgdatadir], ['$(datadir)/file'])
+ AC_SUBST(fsect)
+ AM_CONDITIONAL(FSECT5, test x$fsect = x5)
+ 
+Index: file-5.22/src/magic.c
+===================================================================
+--- file-5.22.orig/src/magic.c
++++ file-5.22/src/magic.c
+@@ -181,11 +181,11 @@ out:
+ 		if (strlen(dllpath) > 3 &&
+ 		    stricmp(&dllpath[strlen(dllpath) - 3], "bin") == 0) {
+ 			if (asprintf(&tmppath,
+-			    "%s/../share/misc/magic.mgc", dllpath) >= 0)
++			    "%s/../share/file/magic.mgc", dllpath) >= 0)
+ 				APPENDPATH();
+ 		} else {
+ 			if (asprintf(&tmppath,
+-			    "%s/share/misc/magic.mgc", dllpath) >= 0)
++			    "%s/share/file/magic.mgc", dllpath) >= 0)
+ 				APPENDPATH();
+ 			else if (asprintf(&tmppath,
+ 			    "%s/magic.mgc", dllpath) >= 0)
