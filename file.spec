@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.22
-Release  : 15
+Release  : 16
 URL      : ftp://ftp.astron.com/pub/file/file-5.22.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.22.tar.gz
 Summary  : No detailed summary available
