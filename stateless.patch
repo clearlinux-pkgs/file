@@ -1,7 +1,17 @@
-Index: file-5.22/configure.ac
-===================================================================
---- file-5.22.orig/configure.ac
-+++ file-5.22/configure.ac
+From 1141a27b1f1d30ee9c75d73fc82eade009c3d235 Mon Sep 17 00:00:00 2001
+From: Alberto Murillo <alberto.murillo.silva@intel.com>
+Date: Thu, 17 Dec 2015 22:59:02 -0600
+Subject: [PATCH] stateless
+
+---
+ configure.ac | 2 +-
+ src/magic.c  | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 50c3188..18d104f 100644
+--- a/configure.ac
++++ b/configure.ac
 @@ -61,7 +61,7 @@ esac
  AC_SUBST(MINGW)
  AM_CONDITIONAL(MINGW, test "$MINGW" = 1)
@@ -11,21 +21,28 @@ Index: file-5.22/configure.ac
  AC_SUBST(fsect)
  AM_CONDITIONAL(FSECT5, test x$fsect = x5)
  
-Index: file-5.22/src/magic.c
-===================================================================
---- file-5.22.orig/src/magic.c
-+++ file-5.22/src/magic.c
-@@ -181,11 +181,11 @@ out:
- 		if (strlen(dllpath) > 3 &&
- 		    stricmp(&dllpath[strlen(dllpath) - 3], "bin") == 0) {
- 			if (asprintf(&tmppath,
--			    "%s/../share/misc/magic.mgc", dllpath) >= 0)
-+			    "%s/../share/file/magic.mgc", dllpath) >= 0)
- 				APPENDPATH();
- 		} else {
- 			if (asprintf(&tmppath,
--			    "%s/share/misc/magic.mgc", dllpath) >= 0)
-+			    "%s/share/file/magic.mgc", dllpath) >= 0)
- 				APPENDPATH();
- 			else if (asprintf(&tmppath,
- 			    "%s/magic.mgc", dllpath) >= 0)
+diff --git a/src/magic.c b/src/magic.c
+index 87ac1cb..136d6bd 100644
+--- a/src/magic.c
++++ b/src/magic.c
+@@ -124,7 +124,7 @@ static void
+ _w32_get_magic_relative_to(char **hmagicpath, HINSTANCE module)
+ {
+ 	static const char *trypaths[] = {
+-		"%s/share/misc/magic.mgc",
++		"%s/share/file/magic.mgc",
+ 		"%s/magic.mgc",
+ 	};
+ 	LPSTR dllpath;
+@@ -148,7 +148,7 @@ _w32_get_magic_relative_to(char **hmagicpath, HINSTANCE module)
+ 	sp = strlen(dllpath);
+ 	if (sp > 3 && stricmp(&dllpath[sp - 3], "bin") == 0) {
+ 		_w32_append_path(hmagicpath,
+-		    "%s/../share/misc/magic.mgc", dllpath);
++		    "%s/../share/file/magic.mgc", dllpath);
+ 		goto out;
+ 	}
+ 
+-- 
+2.5.0
+
