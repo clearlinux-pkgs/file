@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.25
-Release  : 18
+Release  : 19
 URL      : ftp://ftp.astron.com/pub/file/file-5.25.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.25.tar.gz
 Summary  : No detailed summary available
