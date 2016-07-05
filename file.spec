@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.26
-Release  : 20
+Release  : 22
 URL      : ftp://ftp.astron.com/pub/file/file-5.26.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.26.tar.gz
 Summary  : No detailed summary available
