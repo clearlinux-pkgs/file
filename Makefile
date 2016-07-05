@@ -1,5 +1,5 @@
 PKG_NAME := file
-URL := ftp://ftp.astron.com/pub/file/file-5.26.tar.gz
+URL := ftp://ftp.astron.com/pub/file/file-5.28.tar.gz
 ARCHIVES :=
 
 include ../common/Makefile.common
