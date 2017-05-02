@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.29
-Release  : 24
+Release  : 25
 URL      : ftp://ftp.astron.com/pub/file/file-5.29.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.29.tar.gz
 Summary  : No detailed summary available
