@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.32
-Release  : 28
+Release  : 29
 URL      : ftp://ftp.astron.com/pub/file/file-5.32.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.32.tar.gz
 Summary  : No detailed summary available
@@ -14,21 +14,15 @@ Requires: file-bin
 Requires: file-lib
 Requires: file-data
 Requires: file-doc
-BuildRequires : automake
-BuildRequires : automake-dev
-BuildRequires : gettext-bin
-BuildRequires : libtool
-BuildRequires : libtool-dev
-BuildRequires : m4
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : zlib-dev
 Patch1: stateless.patch
+Patch2: decode-ucode.patch
 
 %description
 Mailing List: file@mx.gw.com
@@ -85,15 +79,16 @@ lib components for the file package.
 %prep
 %setup -q -n file-5.32
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505938797
+export SOURCE_DATE_EPOCH=1519267075
 %reconfigure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -103,7 +98,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1505938797
+export SOURCE_DATE_EPOCH=1519267075
 rm -rf %{buildroot}
 %make_install
 

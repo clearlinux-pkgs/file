@@ -1,9 +1,5 @@
 Configure miss: file formats in man section 5
-Configure miss: xlocale.h usability
-Configure miss: xlocale.h presence
-Configure miss: xlocale.h
 Configure miss: sys/utime.h usability
 Configure miss: sys/utime.h presence
-Configure miss: sys/utime.h
 Configure miss: struct tm.tm_gmtoff
 Configure miss: fmtcheck
