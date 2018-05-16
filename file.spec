@@ -4,7 +4,7 @@
 #
 Name     : file
 Version  : 5.32
-Release  : 31
+Release  : 32
 URL      : ftp://ftp.astron.com/pub/file/file-5.32.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.32.tar.gz
 Summary  : No detailed summary available
