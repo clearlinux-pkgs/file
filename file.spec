@@ -17,7 +17,7 @@ Requires: file-doc
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : zlib-dev
