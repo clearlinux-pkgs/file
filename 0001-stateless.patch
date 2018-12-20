@@ -1,7 +1,7 @@
-From 1141a27b1f1d30ee9c75d73fc82eade009c3d235 Mon Sep 17 00:00:00 2001
+From 6396483ebbfedf67fc60417ea7f580f26ae095bf Mon Sep 17 00:00:00 2001
 From: Alberto Murillo <alberto.murillo.silva@intel.com>
 Date: Thu, 17 Dec 2015 22:59:02 -0600
-Subject: [PATCH] stateless
+Subject: [PATCH 1/2] stateless
 
 ---
  configure.ac | 2 +-
@@ -9,10 +9,10 @@ Subject: [PATCH] stateless
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 50c3188..18d104f 100644
+index 17505e3..8fff793 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -61,7 +61,7 @@ esac
+@@ -71,7 +71,7 @@ esac
  AC_SUBST(MINGW)
  AM_CONDITIONAL(MINGW, test "$MINGW" = 1)
  
@@ -22,10 +22,10 @@ index 50c3188..18d104f 100644
  AM_CONDITIONAL(FSECT5, test x$fsect = x5)
  
 diff --git a/src/magic.c b/src/magic.c
-index 87ac1cb..136d6bd 100644
+index 7f469c5..afb50bd 100644
 --- a/src/magic.c
 +++ b/src/magic.c
-@@ -124,7 +124,7 @@ static void
+@@ -122,7 +122,7 @@ static void
  _w32_get_magic_relative_to(char **hmagicpath, HINSTANCE module)
  {
  	static const char *trypaths[] = {
@@ -34,7 +34,7 @@ index 87ac1cb..136d6bd 100644
  		"%s/magic.mgc",
  	};
  	LPSTR dllpath;
-@@ -148,7 +148,7 @@ _w32_get_magic_relative_to(char **hmagicpath, HINSTANCE module)
+@@ -146,7 +146,7 @@ _w32_get_magic_relative_to(char **hmagicpath, HINSTANCE module)
  	sp = strlen(dllpath);
  	if (sp > 3 && stricmp(&dllpath[sp - 3], "bin") == 0) {
  		_w32_append_path(hmagicpath,
@@ -44,5 +44,5 @@ index 87ac1cb..136d6bd 100644
  	}
  
 -- 
-2.5.0
+2.20.0
 

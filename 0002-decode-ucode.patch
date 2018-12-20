@@ -1,18 +1,47 @@
-diff -urN file-5.34.old/src/file.h file-5.34/src/file.h
---- file-5.34.old/src/file.h	2018-05-24 11:09:17.000000000 -0700
-+++ file-5.34/src/file.h	2018-09-10 19:39:29.966625135 -0700
-@@ -474,6 +474,7 @@
- protected int file_encoding(struct magic_set *, const struct buffer *,
+From 72d64aef28f21095208261cf5e772484d7f4af0f Mon Sep 17 00:00:00 2001
+From: Arjan van de Ven <arjan@linux.intel.com>
+Date: Thu, 22 Feb 2018 02:37:57 +0000
+Subject: [PATCH 2/2] decode ucode
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ src/Makefile.am |   2 +-
+ src/file.h      |   1 +
+ src/funcs.c     |   7 ++
+ src/is_ucode.c  | 204 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 213 insertions(+), 1 deletion(-)
+ create mode 100644 src/is_ucode.c
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 2fbefdb..e38f573 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -8,7 +8,7 @@ AM_CPPFLAGS = -DMAGIC='"$(MAGIC)"'
+ AM_CFLAGS = $(CFLAG_VISIBILITY) @WARNINGS@
+ 
+ libmagic_la_SOURCES = buffer.c magic.c apprentice.c softmagic.c ascmagic.c \
+-	encoding.c compress.c is_json.c is_tar.c readelf.c print.c fsmagic.c \
++	encoding.c compress.c is_json.c is_tar.c is_ucode.c readelf.c print.c fsmagic.c \
+ 	funcs.c file.h readelf.h tar.h apptype.c der.c der.h \
+ 	file_opts.h elfclass.h mygetopt.h cdf.c cdf_time.c readcdf.c cdf.h
+ libmagic_la_LDFLAGS = -no-undefined -version-info 1:0:0
+diff --git a/src/file.h b/src/file.h
+index ce2ff7d..f96a5c4 100644
+--- a/src/file.h
++++ b/src/file.h
+@@ -479,6 +479,7 @@ protected int file_encoding(struct magic_set *, const struct buffer *,
      unichar **, size_t *, const char **, const char **, const char **);
+ protected int file_is_json(struct magic_set *, const struct buffer *);
  protected int file_is_tar(struct magic_set *, const struct buffer *);
 +protected int file_is_ucode(struct magic_set *, const struct buffer *);
  protected int file_softmagic(struct magic_set *, const struct buffer *,
      uint16_t *, uint16_t *, int, int);
  protected int file_apprentice(struct magic_set *, const char *, int);
-diff -urN file-5.34.old/src/funcs.c file-5.34/src/funcs.c
---- file-5.34.old/src/funcs.c	2018-05-24 11:09:17.000000000 -0700
-+++ file-5.34/src/funcs.c	2018-09-10 19:39:11.047763886 -0700
-@@ -240,6 +240,13 @@
+diff --git a/src/funcs.c b/src/funcs.c
+index 48c8553..d5f9ad3 100644
+--- a/src/funcs.c
++++ b/src/funcs.c
+@@ -276,6 +276,13 @@ file_buffer(struct magic_set *ms, int fd, const char *inname __attribute__ ((__u
  		}
  	}
  
@@ -26,10 +55,12 @@ diff -urN file-5.34.old/src/funcs.c file-5.34/src/funcs.c
  	/* Check if we have a CDF file */
  	if ((ms->flags & MAGIC_NO_CHECK_CDF) == 0) {
  		m = file_trycdf(ms, &b);
-diff -urN file-5.34.old/src/is_ucode.c file-5.34/src/is_ucode.c
---- file-5.34.old/src/is_ucode.c	1969-12-31 16:00:00.000000000 -0800
-+++ file-5.34/src/is_ucode.c	2018-09-10 19:44:30.087311183 -0700
-@@ -0,0 +1,205 @@
+diff --git a/src/is_ucode.c b/src/is_ucode.c
+new file mode 100644
+index 0000000..1c359a4
+--- /dev/null
++++ b/src/is_ucode.c
+@@ -0,0 +1,204 @@
 +/*
 + * Copyright (c) Ian F. Darwin 1986-1995.
 + * Software written by Ian F. Darwin and others;
@@ -234,16 +265,6 @@ diff -urN file-5.34.old/src/is_ucode.c file-5.34/src/is_ucode.c
 +		return -1;
 +	return 1;
 +}
-+
-diff -urN file-5.34.old/src/Makefile.am file-5.34/src/Makefile.am
---- file-5.34.old/src/Makefile.am	2017-11-02 16:26:20.000000000 -0700
-+++ file-5.34/src/Makefile.am	2018-09-10 19:35:59.916100077 -0700
-@@ -8,7 +8,7 @@
- AM_CFLAGS = $(CFLAG_VISIBILITY) @WARNINGS@
- 
- libmagic_la_SOURCES = buffer.c magic.c apprentice.c softmagic.c ascmagic.c \
--	encoding.c compress.c is_tar.c readelf.c print.c fsmagic.c \
-+	encoding.c compress.c is_tar.c is_ucode.c readelf.c print.c fsmagic.c \
- 	funcs.c file.h readelf.h tar.h apptype.c der.c der.h \
- 	file_opts.h elfclass.h mygetopt.h cdf.c cdf_time.c readcdf.c cdf.h
- libmagic_la_LDFLAGS = -no-undefined -version-info 1:0:0
+-- 
+2.20.0
+
