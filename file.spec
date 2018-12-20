@@ -5,24 +5,24 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.34
-Release  : 34
-URL      : ftp://ftp.astron.com/pub/file/file-5.34.tar.gz
-Source0  : ftp://ftp.astron.com/pub/file/file-5.34.tar.gz
-Source99 : ftp://ftp.astron.com/pub/file/file-5.34.tar.gz.asc
+Version  : 5.35
+Release  : 35
+URL      : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
+Source0  : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
+Source99 : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
-Requires: file-bin
-Requires: file-lib
-Requires: file-license
-Requires: file-data
-Requires: file-man
+Requires: file-bin = %{version}-%{release}
+Requires: file-data = %{version}-%{release}
+Requires: file-lib = %{version}-%{release}
+Requires: file-license = %{version}-%{release}
+Requires: file-man = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
-Patch1: stateless.patch
-Patch2: decode-ucode.patch
+Patch1: 0001-stateless.patch
+Patch2: 0002-decode-ucode.patch
 
 %description
 Mailing List: file@astron.com
@@ -34,9 +34,9 @@ Build Status: https://travis-ci.org/file/file
 %package bin
 Summary: bin components for the file package.
 Group: Binaries
-Requires: file-data
-Requires: file-license
-Requires: file-man
+Requires: file-data = %{version}-%{release}
+Requires: file-license = %{version}-%{release}
+Requires: file-man = %{version}-%{release}
 
 %description bin
 bin components for the file package.
@@ -53,10 +53,10 @@ data components for the file package.
 %package dev
 Summary: dev components for the file package.
 Group: Development
-Requires: file-lib
-Requires: file-bin
-Requires: file-data
-Provides: file-devel
+Requires: file-lib = %{version}-%{release}
+Requires: file-bin = %{version}-%{release}
+Requires: file-data = %{version}-%{release}
+Provides: file-devel = %{version}-%{release}
 
 %description dev
 dev components for the file package.
@@ -65,8 +65,8 @@ dev components for the file package.
 %package lib
 Summary: lib components for the file package.
 Group: Libraries
-Requires: file-data
-Requires: file-license
+Requires: file-data = %{version}-%{release}
+Requires: file-license = %{version}-%{release}
 
 %description lib
 lib components for the file package.
@@ -89,7 +89,7 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.34
+%setup -q -n file-5.35
 %patch1 -p1
 %patch2 -p1
 
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536633941
+export SOURCE_DATE_EPOCH=1545327140
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
@@ -110,11 +110,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1536633941
+export SOURCE_DATE_EPOCH=1545327140
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/file
-cp COPYING %{buildroot}/usr/share/doc/file/COPYING
-cp python/LICENSE %{buildroot}/usr/share/doc/file/python_LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/file
+cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING
+cp python/LICENSE %{buildroot}/usr/share/package-licenses/file/python_LICENSE
 %make_install
 
 %files
@@ -130,7 +130,7 @@ cp python/LICENSE %{buildroot}/usr/share/doc/file/python_LICENSE
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/magic.h
+/usr/include/*.h
 /usr/lib64/libmagic.so
 /usr/share/man/man3/libmagic.3
 
@@ -140,11 +140,11 @@ cp python/LICENSE %{buildroot}/usr/share/doc/file/python_LICENSE
 /usr/lib64/libmagic.so.1.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/file/COPYING
-/usr/share/doc/file/python_LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/file/COPYING
+/usr/share/package-licenses/file/python_LICENSE
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/file.1
 /usr/share/man/man4/magic.4
