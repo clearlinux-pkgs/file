@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.35
-Release  : 36
+Release  : 38
 URL      : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
 Source99 : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz.asc
@@ -18,7 +18,9 @@ Requires: file-data = %{version}-%{release}
 Requires: file-lib = %{version}-%{release}
 Requires: file-license = %{version}-%{release}
 Requires: file-man = %{version}-%{release}
+Requires: libseccomp
 BuildRequires : buildreq-distutils3
+BuildRequires : libseccomp-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
@@ -104,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550608211
+export SOURCE_DATE_EPOCH=1550610458
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -120,7 +122,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1550608211
+export SOURCE_DATE_EPOCH=1550610458
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING

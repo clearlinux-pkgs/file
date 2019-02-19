@@ -4,4 +4,3 @@ Configure miss: sys/utime.h usability
 Configure miss: sys/utime.h presence
 Configure miss: struct tm.tm_gmtoff
 Configure miss: fmtcheck
-Configure miss: seccomp_init in -lseccomp
