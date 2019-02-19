@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.35
-Release  : 35
+Release  : 36
 URL      : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
 Source99 : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz.asc
@@ -23,6 +23,9 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
+Patch3: CVE-2019-8904.patch
+Patch4: CVE-2019-8905.patch
+Patch5: CVE-2019-8906.patch
 
 %description
 Mailing List: file@astron.com
@@ -92,13 +95,20 @@ man components for the file package.
 %setup -q -n file-5.35
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545327140
+export SOURCE_DATE_EPOCH=1550608211
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
@@ -110,7 +120,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1545327140
+export SOURCE_DATE_EPOCH=1550608211
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING
