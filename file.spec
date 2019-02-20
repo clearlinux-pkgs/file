@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.35
-Release  : 38
-URL      : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
-Source0  : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz
-Source99 : ftp://ftp.astron.com/pub/file/file-5.35.tar.gz.asc
+Version  : 5.36
+Release  : 39
+URL      : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz
+Source0  : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz
+Source99 : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -22,12 +22,9 @@ Requires: libseccomp
 BuildRequires : buildreq-distutils3
 BuildRequires : libseccomp-dev
 BuildRequires : pkgconfig(zlib)
-BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
-Patch3: CVE-2019-8904.patch
-Patch4: CVE-2019-8905.patch
-Patch5: CVE-2019-8906.patch
+Patch3: 0003-ucs32-bounds-check.patch
 
 %description
 Mailing List: file@astron.com
@@ -94,19 +91,18 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.35
+%setup -q -n file-5.36
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550610458
+export SOURCE_DATE_EPOCH=1550703508
+export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -122,7 +118,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1550610458
+export SOURCE_DATE_EPOCH=1550703508
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING
