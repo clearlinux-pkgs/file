@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.36
-Release  : 39
+Release  : 40
 URL      : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz
 Source99 : ftp://ftp.astron.com/pub/file/file-5.36.tar.gz.asc
