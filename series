@@ -1,3 +1,4 @@
 0001-stateless.patch
 0002-decode-ucode.patch
 0003-ucs32-bounds-check.patch
+0004-allow-madvise.patch
