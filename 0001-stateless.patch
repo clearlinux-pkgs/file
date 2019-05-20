@@ -1,4 +1,4 @@
-From 6396483ebbfedf67fc60417ea7f580f26ae095bf Mon Sep 17 00:00:00 2001
+From f59e21a874fa1cd59fa6f1a35068dac639c00827 Mon Sep 17 00:00:00 2001
 From: Alberto Murillo <alberto.murillo.silva@intel.com>
 Date: Thu, 17 Dec 2015 22:59:02 -0600
 Subject: [PATCH 1/2] stateless
@@ -9,7 +9,7 @@ Subject: [PATCH 1/2] stateless
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 17505e3..8fff793 100644
+index 7da62aa..41d8cd1 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -71,7 +71,7 @@ esac
@@ -22,7 +22,7 @@ index 17505e3..8fff793 100644
  AM_CONDITIONAL(FSECT5, test x$fsect = x5)
  
 diff --git a/src/magic.c b/src/magic.c
-index 7f469c5..afb50bd 100644
+index da5baf1..7e06c18 100644
 --- a/src/magic.c
 +++ b/src/magic.c
 @@ -122,7 +122,7 @@ static void
@@ -44,5 +44,5 @@ index 7f469c5..afb50bd 100644
  	}
  
 -- 
-2.20.0
+2.21.0
 
