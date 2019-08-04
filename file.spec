@@ -6,10 +6,10 @@
 #
 Name     : file
 Version  : 5.37
-Release  : 43
+Release  : 44
 URL      : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
-Source99 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
+Source1 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -20,6 +20,7 @@ Requires: file-license = %{version}-%{release}
 Requires: file-man = %{version}-%{release}
 Requires: libseccomp
 BuildRequires : buildreq-distutils3
+BuildRequires : libseccomp
 BuildRequires : libseccomp-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
@@ -96,29 +97,31 @@ man components for the file package.
 %patch2 -p1
 
 %build
+## build_prepend content
+CFLAGS="$CFLAGS -pthread"
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1558329693
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1564956307
 export GCC_IGNORE_WERROR=1
-export LDFLAGS="${LDFLAGS} -fno-lto"
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1558329693
+export SOURCE_DATE_EPOCH=1564956307
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING

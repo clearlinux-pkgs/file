@@ -1,0 +1,2 @@
+# see https://git.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/file&id=57279b8f11
+CFLAGS="$CFLAGS -pthread"
