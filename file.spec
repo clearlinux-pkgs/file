@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.37
-Release  : 44
+Release  : 46
 URL      : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source1 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
@@ -26,6 +26,7 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
+Patch3: 0003-Whitelist-syscall-futex-for-seccomp.patch
 
 %description
 Mailing List: file@astron.com
@@ -95,6 +96,7 @@ man components for the file package.
 %setup -q -n file-5.37
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 ## build_prepend content
@@ -104,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564956307
+export SOURCE_DATE_EPOCH=1565122617
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -121,7 +123,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1564956307
+export SOURCE_DATE_EPOCH=1565122617
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp COPYING %{buildroot}/usr/share/package-licenses/file/COPYING

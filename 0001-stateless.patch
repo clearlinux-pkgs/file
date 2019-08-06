@@ -1,7 +1,7 @@
-From f59e21a874fa1cd59fa6f1a35068dac639c00827 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Alberto Murillo <alberto.murillo.silva@intel.com>
 Date: Thu, 17 Dec 2015 22:59:02 -0600
-Subject: [PATCH 1/2] stateless
+Subject: [PATCH] stateless
 
 ---
  configure.ac | 2 +-
@@ -43,6 +43,3 @@ index da5baf1..7e06c18 100644
  		goto out;
  	}
  
--- 
-2.21.0
-
