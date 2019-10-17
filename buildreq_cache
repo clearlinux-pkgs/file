@@ -1,3 +1,4 @@
 5.37
+perl(strict)
 pkgconfig(zlib)
 zlib-dev

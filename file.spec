@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.37
-Release  : 48
+Release  : 49
 URL      : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source1 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
@@ -21,6 +21,7 @@ Requires: file-man = %{version}-%{release}
 Requires: libseccomp
 BuildRequires : buildreq-distutils3
 BuildRequires : libseccomp
+BuildRequires : perl(strict)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
@@ -59,7 +60,6 @@ Requires: file-lib = %{version}-%{release}
 Requires: file-bin = %{version}-%{release}
 Requires: file-data = %{version}-%{release}
 Provides: file-devel = %{version}-%{release}
-Requires: file = %{version}-%{release}
 Requires: file = %{version}-%{release}
 
 %description dev
@@ -106,13 +106,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571325023
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1571335283
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
@@ -124,7 +123,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1571325023
+export SOURCE_DATE_EPOCH=1571335283
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp %{_builddir}/file-5.37/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
