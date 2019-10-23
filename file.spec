@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.37
-Release  : 49
+Release  : 50
 URL      : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source0  : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
 Source1 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
@@ -23,10 +23,12 @@ BuildRequires : buildreq-distutils3
 BuildRequires : libseccomp
 BuildRequires : perl(strict)
 BuildRequires : pkgconfig(zlib)
+BuildRequires : util-linux
 BuildRequires : zlib-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
 Patch3: 0003-Whitelist-more-syscalls-for-seccomp.patch
+Patch4: CVE-2019-18218.patch
 
 %description
 Mailing List: file@astron.com
@@ -97,6 +99,7 @@ man components for the file package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 ## build_prepend content
@@ -106,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571335283
+export SOURCE_DATE_EPOCH=1571789748
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -123,7 +126,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1571335283
+export SOURCE_DATE_EPOCH=1571789748
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp %{_builddir}/file-5.37/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c

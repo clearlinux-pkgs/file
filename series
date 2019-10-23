@@ -1,3 +1,4 @@
 0001-stateless.patch
 0002-decode-ucode.patch
 0003-Whitelist-more-syscalls-for-seccomp.patch
+CVE-2019-18218.patch
