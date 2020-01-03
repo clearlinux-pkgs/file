@@ -5,43 +5,44 @@ Subject: [PATCH] decode ucode
 
 Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
 ---
- src/Makefile.am |   2 +-
+ src/Makefile.am |   3 +-
  src/file.h      |   1 +
  src/funcs.c     |   7 ++
  src/is_ucode.c  | 204 ++++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 213 insertions(+), 1 deletion(-)
+ 4 files changed, 214 insertions(+), 1 deletion(-)
  create mode 100644 src/is_ucode.c
 
 diff --git a/src/Makefile.am b/src/Makefile.am
-index 2fbefdb..e38f573 100644
+index 3f67f2c..161d455 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -8,7 +8,7 @@ AM_CPPFLAGS = -DMAGIC='"$(MAGIC)"'
- AM_CFLAGS = $(CFLAG_VISIBILITY) @WARNINGS@
- 
+@@ -10,7 +10,8 @@ AM_CFLAGS = $(CFLAG_VISIBILITY) @WARNINGS@
  libmagic_la_SOURCES = buffer.c magic.c apprentice.c softmagic.c ascmagic.c \
--	encoding.c compress.c is_json.c is_tar.c readelf.c print.c fsmagic.c \
-+	encoding.c compress.c is_json.c is_tar.c is_ucode.c readelf.c print.c fsmagic.c \
- 	funcs.c file.h readelf.h tar.h apptype.c der.c der.h \
- 	file_opts.h elfclass.h mygetopt.h cdf.c cdf_time.c readcdf.c cdf.h
+ 	encoding.c compress.c is_csv.c is_json.c is_tar.c readelf.c print.c \
+ 	fsmagic.c funcs.c file.h readelf.h tar.h apptype.c der.c der.h \
+-	file_opts.h elfclass.h mygetopt.h cdf.c cdf_time.c readcdf.c cdf.h
++	file_opts.h elfclass.h mygetopt.h cdf.c cdf_time.c readcdf.c cdf.h \
++	is_ucode.c
  libmagic_la_LDFLAGS = -no-undefined -version-info 1:0:0
+ if MINGW
+ MINGWLIBS = -lgnurx -lshlwapi
 diff --git a/src/file.h b/src/file.h
-index 69a586a..bc2c1c7 100644
+index 947f208..7be37b8 100644
 --- a/src/file.h
 +++ b/src/file.h
-@@ -480,6 +480,7 @@ protected int file_encoding(struct magic_set *, const struct buffer *,
-     unichar **, size_t *, const char **, const char **, const char **);
+@@ -481,6 +481,7 @@ protected int file_encoding(struct magic_set *, const struct buffer *,
  protected int file_is_json(struct magic_set *, const struct buffer *);
+ protected int file_is_csv(struct magic_set *, const struct buffer *, int);
  protected int file_is_tar(struct magic_set *, const struct buffer *);
 +protected int file_is_ucode(struct magic_set *, const struct buffer *);
  protected int file_softmagic(struct magic_set *, const struct buffer *,
      uint16_t *, uint16_t *, int, int);
  protected int file_apprentice(struct magic_set *, const char *, int);
 diff --git a/src/funcs.c b/src/funcs.c
-index 23e7f32..f014a8b 100644
+index 9cdec01..1baa449 100644
 --- a/src/funcs.c
 +++ b/src/funcs.c
-@@ -283,6 +283,13 @@ file_buffer(struct magic_set *ms, int fd, struct stat *st,
+@@ -294,6 +294,13 @@ file_buffer(struct magic_set *ms, int fd, struct stat *st,
  		}
  	}
  

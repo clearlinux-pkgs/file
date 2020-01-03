@@ -9,10 +9,10 @@ Subject: [PATCH] stateless
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 7da62aa..41d8cd1 100644
+index ac37fcc..c835616 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -71,7 +71,7 @@ esac
+@@ -81,7 +81,7 @@ esac
  AC_SUBST(MINGW)
  AM_CONDITIONAL(MINGW, test "$MINGW" = 1)
  

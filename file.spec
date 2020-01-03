@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.37
-Release  : 50
-URL      : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
-Source0  : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz
-Source1 : ftp://ftp.astron.com/pub/file/file-5.37.tar.gz.asc
+Version  : 5.38
+Release  : 51
+URL      : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz
+Source0  : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz
+Source1  : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -18,17 +18,12 @@ Requires: file-data = %{version}-%{release}
 Requires: file-lib = %{version}-%{release}
 Requires: file-license = %{version}-%{release}
 Requires: file-man = %{version}-%{release}
-Requires: libseccomp
 BuildRequires : buildreq-distutils3
-BuildRequires : libseccomp
-BuildRequires : perl(strict)
+BuildRequires : bzip2-dev
 BuildRequires : pkgconfig(zlib)
-BuildRequires : util-linux
-BuildRequires : zlib-dev
+BuildRequires : xz-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
-Patch3: 0003-Whitelist-more-syscalls-for-seccomp.patch
-Patch4: CVE-2019-18218.patch
 
 %description
 Mailing List: file@astron.com
@@ -95,27 +90,27 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.37
+%setup -q -n file-5.38
+cd %{_builddir}/file-5.38
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 ## build_prepend content
+# see https://git.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/file&id=57279b8f11
 CFLAGS="$CFLAGS -pthread"
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571789748
+export SOURCE_DATE_EPOCH=1578012464
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-%reconfigure --disable-static
+%reconfigure --disable-static --disable-seccomp
 make  %{?_smp_mflags}
 
 %check
@@ -126,11 +121,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1571789748
+export SOURCE_DATE_EPOCH=1578012464
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
-cp %{_builddir}/file-5.37/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
-cp %{_builddir}/file-5.37/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
+cp %{_builddir}/file-5.38/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
+cp %{_builddir}/file-5.38/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
 %make_install
 
 %files
