@@ -6,10 +6,10 @@
 #
 Name     : file
 Version  : 5.38
-Release  : 51
-URL      : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz
-Source0  : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz
-Source1  : ftp://ftp.astron.com/pub/file/file-5.38.tar.gz.asc
+Release  : 52
+URL      : https://astron.com/pub/file/file-5.38.tar.gz
+Source0  : https://astron.com/pub/file/file-5.38.tar.gz
+Source1  : https://astron.com/pub/file/file-5.38.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -104,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578012464
+export SOURCE_DATE_EPOCH=1582235560
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -121,7 +121,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1578012464
+export SOURCE_DATE_EPOCH=1582235560
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp %{_builddir}/file-5.38/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
