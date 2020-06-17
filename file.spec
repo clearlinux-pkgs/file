@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.38
-Release  : 52
-URL      : https://astron.com/pub/file/file-5.38.tar.gz
-Source0  : https://astron.com/pub/file/file-5.38.tar.gz
-Source1  : https://astron.com/pub/file/file-5.38.tar.gz.asc
-Summary  : No detailed summary available
+Version  : 5.39
+Release  : 53
+URL      : https://astron.com/pub/file/file-5.39.tar.gz
+Source0  : https://astron.com/pub/file/file-5.39.tar.gz
+Source1  : https://astron.com/pub/file/file-5.39.tar.gz.asc
+Summary  : Magic number recognition library
 Group    : Development/Tools
 License  : BSD-2-Clause
 Requires: file-bin = %{version}-%{release}
@@ -90,8 +90,8 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.38
-cd %{_builddir}/file-5.38
+%setup -q -n file-5.39
+cd %{_builddir}/file-5.39
 %patch1 -p1
 %patch2 -p1
 
@@ -104,11 +104,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582235560
+export SOURCE_DATE_EPOCH=1592368262
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static --disable-seccomp
 make  %{?_smp_mflags}
@@ -121,11 +121,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1582235560
+export SOURCE_DATE_EPOCH=1592368262
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
-cp %{_builddir}/file-5.38/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
-cp %{_builddir}/file-5.38/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
+cp %{_builddir}/file-5.39/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
+cp %{_builddir}/file-5.39/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
 %make_install
 
 %files
@@ -143,6 +143,7 @@ cp %{_builddir}/file-5.38/python/LICENSE %{buildroot}/usr/share/package-licenses
 %defattr(-,root,root,-)
 /usr/include/magic.h
 /usr/lib64/libmagic.so
+/usr/lib64/pkgconfig/libmagic.pc
 /usr/share/man/man3/libmagic.3
 
 %files lib
