@@ -1,5 +1,4 @@
 Configure miss: file formats in man section 5
-Configure miss: sys/utime.h usability
-Configure miss: sys/utime.h presence
 Configure miss: fmtcheck
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: seccomp_init in -lseccomp

@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.39
-Release  : 53
-URL      : https://astron.com/pub/file/file-5.39.tar.gz
-Source0  : https://astron.com/pub/file/file-5.39.tar.gz
-Source1  : https://astron.com/pub/file/file-5.39.tar.gz.asc
+Version  : 5.40
+Release  : 54
+URL      : https://astron.com/pub/file/file-5.40.tar.gz
+Source0  : https://astron.com/pub/file/file-5.40.tar.gz
+Source1  : https://astron.com/pub/file/file-5.40.tar.gz.asc
 Summary  : Magic number recognition library
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -27,8 +27,8 @@ Patch2: 0002-decode-ucode.patch
 
 %description
 Mailing List: file@astron.com
-Mailing List archives: http://mailman.astron.com/pipermail/file/
-Bug tracker: http://bugs.astron.com/
+Mailing List archives: https://mailman.astron.com/pipermail/file/
+Bug tracker: https://bugs.astron.com/
 E-mail: christos@astron.com
 Build Status: https://travis-ci.org/file/file
 
@@ -90,8 +90,8 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.39
-cd %{_builddir}/file-5.39
+%setup -q -n file-5.40
+cd %{_builddir}/file-5.40
 %patch1 -p1
 %patch2 -p1
 
@@ -104,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592368262
+export SOURCE_DATE_EPOCH=1617227835
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -118,14 +118,14 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1592368262
+export SOURCE_DATE_EPOCH=1617227835
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
-cp %{_builddir}/file-5.39/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
-cp %{_builddir}/file-5.39/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
+cp %{_builddir}/file-5.40/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
+cp %{_builddir}/file-5.40/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
 %make_install
 
 %files

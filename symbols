@@ -46,6 +46,7 @@ libmagic.so.1:file_badseek
 libmagic.so.1:file_buffer
 libmagic.so.1:file_check_mem
 libmagic.so.1:file_checkfmt
+libmagic.so.1:file_clear_closexec
 libmagic.so.1:file_copystr
 libmagic.so.1:file_default
 libmagic.so.1:file_encoding
@@ -67,6 +68,7 @@ libmagic.so.1:file_ms_free
 libmagic.so.1:file_oomem
 libmagic.so.1:file_parse_guid
 libmagic.so.1:file_pipe2file
+libmagic.so.1:file_pipe_closexec
 libmagic.so.1:file_pop_buffer
 libmagic.so.1:file_print_guid
 libmagic.so.1:file_printable
@@ -85,6 +87,7 @@ libmagic.so.1:file_separator
 libmagic.so.1:file_showstr
 libmagic.so.1:file_signextend
 libmagic.so.1:file_softmagic
+libmagic.so.1:file_strtrim
 libmagic.so.1:file_trycdf
 libmagic.so.1:file_tryelf
 libmagic.so.1:file_vprintf
