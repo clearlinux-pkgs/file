@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.40
-Release  : 54
+Release  : 55
 URL      : https://astron.com/pub/file/file-5.40.tar.gz
 Source0  : https://astron.com/pub/file/file-5.40.tar.gz
 Source1  : https://astron.com/pub/file/file-5.40.tar.gz.asc
@@ -24,6 +24,7 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : xz-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
+Patch3: 0003-PR-257-cuihao-put-attributes-inside-the-xz-magic.patch
 
 %description
 Mailing List: file@astron.com
@@ -94,6 +95,7 @@ man components for the file package.
 cd %{_builddir}/file-5.40
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 ## build_prepend content
@@ -104,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1617227835
+export SOURCE_DATE_EPOCH=1619234119
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -121,7 +123,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1617227835
+export SOURCE_DATE_EPOCH=1619234119
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp %{_builddir}/file-5.40/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c

@@ -27,10 +27,10 @@ index 3f67f2c..161d455 100644
  if MINGW
  MINGWLIBS = -lgnurx -lshlwapi
 diff --git a/src/file.h b/src/file.h
-index 947f208..7be37b8 100644
+index c548e97..e8717b0 100644
 --- a/src/file.h
 +++ b/src/file.h
-@@ -481,6 +481,7 @@ protected int file_encoding(struct magic_set *, const struct buffer *,
+@@ -516,6 +516,7 @@ protected int file_encoding(struct magic_set *, const struct buffer *,
  protected int file_is_json(struct magic_set *, const struct buffer *);
  protected int file_is_csv(struct magic_set *, const struct buffer *, int);
  protected int file_is_tar(struct magic_set *, const struct buffer *);
@@ -39,10 +39,10 @@ index 947f208..7be37b8 100644
      uint16_t *, uint16_t *, int, int);
  protected int file_apprentice(struct magic_set *, const char *, int);
 diff --git a/src/funcs.c b/src/funcs.c
-index 9cdec01..1baa449 100644
+index b926625..e56e241 100644
 --- a/src/funcs.c
 +++ b/src/funcs.c
-@@ -294,6 +294,13 @@ file_buffer(struct magic_set *ms, int fd, struct stat *st,
+@@ -403,6 +403,13 @@ file_buffer(struct magic_set *ms, int fd, struct stat *st,
  		}
  	}
  

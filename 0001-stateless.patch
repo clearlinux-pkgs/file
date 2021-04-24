@@ -9,7 +9,7 @@ Subject: [PATCH] stateless
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index ac37fcc..c835616 100644
+index 02eac8f..4bef67a 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -81,7 +81,7 @@ esac
@@ -22,7 +22,7 @@ index ac37fcc..c835616 100644
  AM_CONDITIONAL(FSECT5, test x$fsect = x5)
  
 diff --git a/src/magic.c b/src/magic.c
-index da5baf1..7e06c18 100644
+index 81a0840..9ba27bc 100644
 --- a/src/magic.c
 +++ b/src/magic.c
 @@ -122,7 +122,7 @@ static void
