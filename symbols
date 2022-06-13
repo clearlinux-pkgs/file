@@ -1,3 +1,4 @@
+libmagic.so.1:file_printable
 libmagic.so.1:magic_buffer
 libmagic.so.1:magic_check
 libmagic.so.1:magic_close

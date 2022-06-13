@@ -2,3 +2,5 @@ Configure miss: file formats in man section 5
 Configure miss: fmtcheck
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: seccomp_init in -lseccomp
+Configure miss: sys/bswap.h
+Configure miss: x86_64-generic-linux-gnu-file

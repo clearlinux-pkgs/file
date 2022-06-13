@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x71112AB16CB33B3A (christos@netbsd.org)
 #
 Name     : file
-Version  : 5.41
-Release  : 57
-URL      : https://astron.com/pub/file/file-5.41.tar.gz
-Source0  : https://astron.com/pub/file/file-5.41.tar.gz
-Source1  : https://astron.com/pub/file/file-5.41.tar.gz.asc
+Version  : 5.42
+Release  : 58
+URL      : https://astron.com/pub/file/file-5.42.tar.gz
+Source0  : https://astron.com/pub/file/file-5.42.tar.gz
+Source1  : https://astron.com/pub/file/file-5.42.tar.gz.asc
 Summary  : Magic number recognition library
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -26,9 +26,16 @@ Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
 
 %description
-# How to get started developing
-## Auto files
-After checking out the source, run the following:
+- Bug Tracker: <https://bugs.astron.com/>
+- Build Status: <https://travis-ci.org/file/file>
+- Download link: <ftp://ftp.astron.com/pub/file/>
+- E-mail: <christos@astron.com>
+- Fuzzing link: <https://bugs.chromium.org/p/oss-fuzz/issues/list?sort=-opened&can=1&q=proj:file>
+- Home page: https://www.darwinsys.com/file/
+- Mailing List archives: <https://mailman.astron.com/pipermail/file/>
+- Mailing List: <file@astron.com>
+- Public repo: <https://github.com/file/file>
+- Test framework: <https://github.com/file/file-tests>
 
 %package bin
 Summary: bin components for the file package.
@@ -88,8 +95,8 @@ man components for the file package.
 
 
 %prep
-%setup -q -n file-5.41
-cd %{_builddir}/file-5.41
+%setup -q -n file-5.42
+cd %{_builddir}/file-5.42
 %patch1 -p1
 %patch2 -p1
 
@@ -102,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634593240
+export SOURCE_DATE_EPOCH=1655160840
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -119,11 +126,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1634593240
+export SOURCE_DATE_EPOCH=1655160840
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
-cp %{_builddir}/file-5.41/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
-cp %{_builddir}/file-5.41/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
+cp %{_builddir}/file-5.42/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c
+cp %{_builddir}/file-5.42/python/LICENSE %{buildroot}/usr/share/package-licenses/file/6ae41b2c850d4e22cd6b274d4a5e987ccdb3ad84
 %make_install
 
 %files
