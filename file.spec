@@ -6,7 +6,7 @@
 #
 Name     : file
 Version  : 5.42
-Release  : 58
+Release  : 59
 URL      : https://astron.com/pub/file/file-5.42.tar.gz
 Source0  : https://astron.com/pub/file/file-5.42.tar.gz
 Source1  : https://astron.com/pub/file/file-5.42.tar.gz.asc
@@ -24,6 +24,7 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : xz-dev
 Patch1: 0001-stateless.patch
 Patch2: 0002-decode-ucode.patch
+Patch3: 0004-Fix-stdin-handling.patch
 
 %description
 - Bug Tracker: <https://bugs.astron.com/>
@@ -99,6 +100,7 @@ man components for the file package.
 cd %{_builddir}/file-5.42
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 ## build_prepend content
@@ -109,7 +111,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655160840
+export SOURCE_DATE_EPOCH=1655236108
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -126,7 +128,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1655160840
+export SOURCE_DATE_EPOCH=1655236108
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/file
 cp %{_builddir}/file-5.42/COPYING %{buildroot}/usr/share/package-licenses/file/9f5bf317af31a6dac50b5f5504aa63b59d05442c

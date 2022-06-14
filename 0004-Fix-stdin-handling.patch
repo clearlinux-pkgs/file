@@ -1,0 +1,37 @@
+From 66eac4a2c79251e3b1aa01e35ea28c0787ed47d8 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 14 Jun 2022 12:46:16 -0700
+Subject: [PATCH] Fix stdin handling
+
+From https://bugs.astron.com/view.php?id=358
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ src/file.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/file.c b/src/file.c
+index 5300e5a..7cbbcc5 100644
+--- a/src/file.c
++++ b/src/file.c
+@@ -509,7 +509,7 @@ unwrap(struct magic_set *ms, const char *fn)
+ 
+ 	if (strcmp("-", fn) == 0) {
+ 		f = stdin;
+-		wid = 1;
++		wid = 0;
+ 	} else {
+ 		if ((f = fopen(fn, "r")) == NULL) {
+ 			file_warn("Cannot open `%s'", fn);
+@@ -530,7 +530,7 @@ unwrap(struct magic_set *ms, const char *fn)
+ 	while ((len = getline(&line, &llen, f)) > 0) {
+ 		if (line[len - 1] == '\n')
+ 			line[len - 1] = '\0';
+-		e |= process(ms, line, wid);
++		e |= process(ms, line, (wid > 0) ? wid : file_mbswidth(ms, line));
+ 	}
+ 
+ 	free(line);
+-- 
+2.36.1
+
