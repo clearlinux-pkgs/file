@@ -1,4 +1,4 @@
 0001-stateless.patch
 0002-decode-ucode.patch
 #0003-PR-257-cuihao-put-attributes-inside-the-xz-magic.patch
-0004-Fix-stdin-handling.patch
+#0004-Fix-stdin-handling.patch
