@@ -1,5 +1,5 @@
-5.45
+5.46
 bzip2-dev
+file
 pkgconfig(zlib)
-xz-dev
 zstd-dev

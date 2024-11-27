@@ -1,6 +1,14 @@
+Configure miss: LZ_decompress_open in -llz
+Configure miss: Lrzip.h
 Configure miss: file formats in man section 5
 Configure miss: fmtcheck
+Configure miss: gcc option for timestamps after 2038
+Configure miss: gcc option to enable large file support
 Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: lrzip_new in -llrzip
+Configure miss: lzlib.h
+Configure miss: lzma.h
+Configure miss: lzma_stream_decoder in -llzma
 Configure miss: seccomp_init in -lseccomp
 Configure miss: sys/bswap.h
 Configure miss: x86_64-generic-linux-gnu-file
