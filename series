@@ -2,3 +2,4 @@
 0002-decode-ucode.patch
 #0003-PR-257-cuihao-put-attributes-inside-the-xz-magic.patch
 #0004-Fix-stdin-handling.patch
+backport-b3384a1fbfa1fee99986e5750ab8e700de4f24ad.patch
